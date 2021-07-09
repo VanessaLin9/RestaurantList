@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/RestaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 const restaurantList = require('./restaurant.json')
 
+const Res = require('./models/restaurant') //載入restaurant model
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 

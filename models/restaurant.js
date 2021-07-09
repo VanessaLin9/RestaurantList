@@ -38,3 +38,4 @@ const restaurantSchema = new Schema ({
     required: false
   },
 })
+module.exports = mongoose.model('Res', restaurantSchema)
