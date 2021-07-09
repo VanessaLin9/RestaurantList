@@ -1,13 +1,15 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const exphbs = require('express-handlebars')
+
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/RestaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
-const restaurantList = require('./restaurant.json')
+
 
 const Res = require('./models/restaurant') //載入restaurant model
 
+//使用handlebar
+const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
@@ -25,7 +27,10 @@ db.once('open', () => {
 })
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurant: restaurantList.results })
+  Res.find() //取出Res model裡面的資料
+    .lean() //把mongoose拿出來的資料弄成乾淨的JS資料陣列
+    .then( resList => res.render('index', {resList}))
+    .catch( error => console.error(error))
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
