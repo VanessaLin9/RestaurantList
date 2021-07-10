@@ -10,8 +10,9 @@
             類別：
           </span>
           {{restaurant.category}}
+        <a href="./{{ restaurant._id }}/edit">edit</a>
         </p>
-  
+
         <p class="mb-1">
           <span class="text-secondary">
             <i class="fas fa-map-marker-alt pr-2"></i>
@@ -38,6 +39,7 @@
         <img class="rounded mx-auto d-block mb-4 w-100"
           src="{{restaurant.image}}" alt="{{restaurant.name}}"
           style="max-width: 600px;">
+        
       </div>
     </div>
   </div>
