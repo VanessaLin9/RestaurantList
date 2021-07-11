@@ -65,15 +65,15 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.get('/restaurants/:id/edit', (req,res) => {
+app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Res.findById(id)
     .lean()
-    .then((restaurant) => res.render('edit', { restaurant}))
+    .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req,res) => {
+app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const name_en = req.body.name_en
@@ -85,7 +85,7 @@ app.post('/restaurants/:id/edit', (req,res) => {
   const rating = req.body.rating
   const description = req.body.description
   return Res.findById(id)
-    .then( res => {
+    .then(res => {
       res.name = name
       res.name_en = name_en
       res.category = category
@@ -101,7 +101,7 @@ app.post('/restaurants/:id/edit', (req,res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/delete', (req,res) => {
+app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Res.findById(id)
     .then(restaurant => restaurant.remove())
@@ -111,11 +111,14 @@ app.post('/restaurants/:id/delete', (req,res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurant = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLocaleLowerCase().includes(keyword.toLowerCase()) + restaurant.category.toLocaleLowerCase().includes(keyword.toLowerCase())
-  })
+  Res.findOne({ name: keyword })
+    .then(resList => {
+      res.render('index', { resList })
+    })
+    .catch(error => console.log(error))
 
-  res.render('index', { restaurant: restaurant, keyword: keyword })
+  //(restaurant => res.render(restaurantList.results.filter(restaurant.name.toLocaleLowerCase().includes(keyword.toLowerCase()) + restaurant.category.toLocaleLowerCase().includes(keyword.toLowerCase()))))
+  // res.render('index', { restaurant: restaurant, keyword: keyword })
 })
 
 app.listen(port, () => {

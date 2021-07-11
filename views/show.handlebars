@@ -4,16 +4,28 @@
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
 
+      <div class="row justify-content-end">
+        <a href="/" class="badge badge-secondary mr-3 text-wrap">
+          <h6>Back</h6>
+          <i class="fas fa-backward"></i>
+        </a>
+        <a href="./{{ restaurant._id }}/edit" class="badge badge-secondary mr-3 ">
+          <h6>Edit</h6>
+          <i class="fas fa-edit"></i>
+        </a>
+        <form action="{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-major btn-lg">Delete</button>
+        </form>
+      </div>
+
       <p class="mb-1">
         <span class="text-secondary">
           <i class="fas fa-utensils pr-2"></i>
           類別：
         </span>
         {{restaurant.category}}
-        <a href="./{{ restaurant._id }}/edit">edit</a>
-        <form action="./{{ restaurant._id }}/delete" method="POST" style="display: inline;">
-          <button type="submit">delete</button>
-        </form>
+      <form action="./{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+      </form>
       </p>
 
       <p class="mb-1">

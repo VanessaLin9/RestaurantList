@@ -1,13 +1,55 @@
-<form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
-  <input type="text" placeholder="name" name="name" value="{{ restaurant.name }}">
-  <input type="text" placeholder="name_en" name="name_en" value="{{ restaurant.name_en }}">
-  <input type="text" placeholder="category" name="category" value="{{ restaurant.category }}">
-  <input type="text" placeholder="image" name="image" value="{{ restaurant.image }}">
-  <input type="text" placeholder="location" name="location" value="{{ restaurant.location }}">
-  <input type="text" placeholder="phone" name="phone" value="{{ restaurant.phone }}">
-  <input type="text" placeholder="google_map" name="google_map" value="{{ restaurant.google_map }}">
-  <input type="text" placeholder="rating" name="rating" value="{{ restaurant.rating }}">
-  <input type="text" placeholder="description" name="description" value="{{ restaurant.description }}">
-  <button type="submit">Save</button>
-  <a href="/">back</a>
-</form>
+<div class="container  mt-5">
+  <div class="justify-content-center">
+    <div class="col-md-10 col-12 mx-auto text-secondary">
+      <form action="/restaurants/{{ restaurant._id }}/edit" method="POST" class="flex-direction: column">
+
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳名稱</label>
+          <input type="text" placeholder="name" name="name" class="col-sm-8" value="{{ restaurant.name }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳英文名稱</label>
+          <input type="text" placeholder="name_en" name="name_en" class="col-sm-8" value="{{ restaurant.name_en }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳類型</label>
+          <input type="text" placeholder="category" name="category" class="col-sm-8" value="{{ restaurant.category }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳照片</label>
+          <input type="text" placeholder="image" name="image" class="col-sm-8" value="{{ restaurant.image }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳地址</label>
+          <input type="text" placeholder="location" name="location" class="col-sm-8" value="{{ restaurant.location }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳電話</label>
+          <input type="text" placeholder="phone" name="phone" class="col-sm-8" value="{{ restaurant.phone }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳google map</label>
+          <input type="text" placeholder="google_map" name="google_map" class="col-sm-8" value="{{ restaurant.google_map }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳評分</label>
+          <input type="text" placeholder="rating" name="rating" class="col-sm-8" value="{{ restaurant.rating }}">
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-4 card-title mb-1">餐廳介紹</label>
+          <textarea  placeholder="description" name="description" class="form-control col-sm-8"  rows="3">{{ restaurant.description }}</textarea>
+        </div>
+
+        <div class="row justify-content-end">
+          <a href="/" class="badge badge-secondary font-weight-normal mr-3">back
+            <div>
+              <i class="fas fa-backward"></i>
+            </div>
+          </a>
+          <button type="submit" class="btn btn-major">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
