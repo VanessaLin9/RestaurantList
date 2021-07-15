@@ -8,10 +8,9 @@ const methOverride = require('method-override') //載入method-override
 // 引用路由器
 const routes = require('./routes')
 const app = express()
+const isEqual = require('./tools/handlebarsHelper')
 
 require('./config/mongoose')
-
-
 
 app.use(express.static('public'))
 
@@ -20,12 +19,13 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ 
+  defaultLayout: 'main',
+  helpers: { isEqual }
+  }))
 app.set('view engine', 'handlebars')
 //設定每一筆請求都會通過method override進行前處理
 app.use(methOverride('_method'))
-
-
 
 
 // 將 request 導入路由器

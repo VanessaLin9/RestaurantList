@@ -75,4 +75,9 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+router.get('/sort', (req, res) => {
+  console.log(req)
+})
+
+
 module.exports = router
