@@ -3,12 +3,12 @@ const router = express.Router()
 
 const Res = require('../../models/restaurant') //載入restaurant model
 
+// create
 router.get('/new', (req, res) => {
   return res.render('new')
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
   const name = req.body.name
   const name_en = req.body.name_en
   const category = req.body.category
@@ -18,11 +18,14 @@ router.post('/', (req, res) => {
   const google_map = req.body.google_map
   const rating = req.body.rating
   const description = req.body.description
+
+
   return Res.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
+// detail
 router.get('/:id', (req, res) => {
   const id = req.params.id
   return Res.findById(id)
@@ -31,6 +34,7 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// edit
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Res.findById(id)
@@ -67,6 +71,7 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// delete
 router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Res.findById(id)
@@ -74,10 +79,5 @@ router.delete('/:id', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
-
-router.get('/sort', (req, res) => {
-  console.log(req)
-})
-
 
 module.exports = router

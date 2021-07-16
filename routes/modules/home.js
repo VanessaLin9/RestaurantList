@@ -51,12 +51,14 @@ router.get('/search', (req, res) => {
     .lean()
     .sort(sortList[req.query.sortBy].mongoose)
     .then(resList => {
-      res.render('index', { resList, sortList, query: req.query })
+      if (resList.length > 0) {
+        res.render('index', { resList, sortList, query: req.query })
+      } else {
+        const noFind = `<h4>無相關搜尋結果</h4>`
+        res.render('index', { noFind, query: req.query })
+      }
     })
     .catch(error => console.log(error))
-
-  //(restaurant => res.render(restaurantList.results.filter(restaurant.name.toLocaleLowerCase().includes(keyword.toLowerCase()) + restaurant.category.toLocaleLowerCase().includes(keyword.toLowerCase()))))
-  // res.render('index', { restaurant: restaurant, keyword: keyword })
 })
 
 
