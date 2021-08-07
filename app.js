@@ -6,6 +6,8 @@ const methOverride = require('method-override')
 const isEqual = require('./tools/handlebarsHelper')
 
 const routes = require('./routes')
+
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
@@ -29,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methOverride('_method'))
 
 
-
+usePassport(app)
 app.use(routes)
 
 app.listen(port, () => {
