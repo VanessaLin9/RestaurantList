@@ -10,7 +10,7 @@
 
 2. 進入專案目錄 
 ```
-  middleware
+  RestaurantList
 ```
 3. 安裝相關套件
 ```
@@ -25,7 +25,7 @@
 ***
 ## 本專案網頁版本
   歡迎 [https://fathomless-plains-44535.herokuapp.com/](https://fathomless-plains-44535.herokuapp.com/)
-  
+
 ***
 ## Features-專案功能
 
