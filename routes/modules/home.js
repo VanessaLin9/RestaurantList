@@ -38,16 +38,18 @@ const sortList = {
 
 
 router.get('/', (req, res) => {
-  Res.find() //取出Res model裡面的資料
-    .lean() //把mongoose拿出來的資料弄成乾淨的JS資料陣列
-    .sort({ _id: 'asc' }) //根據ID做正序(ascending)排列, 反序是'desc'(desscending)
+  const userId = req.user._id
+  Res.find({ userId })
+    .lean() 
+    .sort({ _id: 'asc' }) 
     .then(resList => res.render('index', { resList, sortList }))
     .catch(error => console.error(error))
 })
 
 router.get('/search', (req, res) => {
+  const userId = req.user._id
   const keyword = new RegExp(req.query.keyword.trim(), 'i')
-  Res.find({ $or: [{ name: keyword }, { category: keyword }] })
+  Res.find({ userId, $or: [{ name: keyword }, { category: keyword }] })
     .lean()
     .sort(sortList[req.query.sortBy].mongoose)
     .then(resList => {

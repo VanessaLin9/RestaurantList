@@ -1,4 +1,4 @@
-const Res = require('../restaurant') //載入restaurant model
+const Restaurant = require('../restaurant') 
 const resList = require('./restaurant.json')
 const db = require('../../config/mongoose')
 
@@ -6,7 +6,7 @@ db.once('open', () => {
   console.log('mongodb connected!')
   for (let i = 0; i < 8; i++) {
     let reslist = resList.results[i]
-    Res.create({
+    Restaurant.create({
       name: reslist.name,
       name_en: reslist.name_en,
       category: reslist.category,
