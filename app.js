@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 const methOverride = require('method-override') 
 const isEqual = require('./tools/handlebarsHelper')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const routes = require('./routes')
 
@@ -12,7 +15,7 @@ const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT
 
 app.use(express.static('public'))
 
@@ -23,7 +26,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -44,6 +47,6 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
-app.listen(port, () => {
-  console.log(`Express is listen on localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Express is listen on localhost:${PORT}`)
 })
